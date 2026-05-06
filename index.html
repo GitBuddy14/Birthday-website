@@ -1,0 +1,150 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Love Story ❤️</title><style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #000000, #8b0000);
+  color: #fff;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+/* Fade animation */
+.fade-in {
+  animation: fadeIn 1.5s ease-in-out;
+}
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(20px);} 
+  to {opacity: 1; transform: translateY(0);} 
+}
+
+.start-screen, .password-screen {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  padding: 12px 25px;
+  border-radius: 25px;
+  border: none;
+  background: red;
+  color: white;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.main { display: none; padding: 20px; }
+
+.timeline .event {
+  background: rgba(255,0,0,0.2);
+  margin: 10px;
+  padding: 15px;
+  border-radius: 15px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+}
+.gallery img { width: 100%; border-radius: 15px; }
+
+.message {
+  display: none;
+  margin-top: 20px;
+  background: rgba(255,0,0,0.3);
+  padding: 20px;
+  border-radius: 15px;
+  font-size: 20px;
+}
+
+.typing {
+  border-right: 2px solid white;
+  white-space: nowrap;
+  overflow: hidden;
+}
+</style></head><body><!-- MUSIC --><audio id="music" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio><!-- PASSWORD SCREEN --><div class="password-screen fade-in" id="passwordScreen">
+  <h2>Enter Our Secret Date ❤️</h2>
+  <input type="text" id="pass" placeholder="DD/MM/YYYY">
+  <button onclick="checkPass()">Unlock</button>
+</div><!-- START SCREEN --><div class="start-screen fade-in" id="startScreen" style="display:none;">
+  <h1>❤️ Welcome My Love ❤️</h1>
+  <button onclick="startSite()">Enter</button>
+</div><!-- MAIN CONTENT --><div class="main" id="mainContent">
+  <h1 class="fade-in">Our Journey 💕</h1>  <div class="timeline fade-in">
+    <div class="event">📅 First Talk: 3 March</div>
+    <div class="event">💑 First Meet: 30 July</div>
+    <div class="event">💖 First Date: Add Yours</div>
+  </div>  <!-- MUSIC CONTROLS --><button onclick="playMusic()">🎵 Play Music</button> <button onclick="pauseMusic()">⏸ Pause</button>
+
+  <!-- BIRTHDAY CHECK -->  <h3>Enter Birthday 🎂</h3>
+  <input type="date" id="bday">
+  <button onclick="checkBirthday()">Submit</button>  <div class="message" id="msg">
+    <span id="typingText"></span>
+  </div>  <h2>👶 Childhood</h2>
+  <div class="gallery">
+    <img src="child1.jpg">
+    <img src="child2.jpg">
+  </div>  <h2>🎂 Now</h2>
+  <div class="gallery">
+    <img src="bday1.jpg">
+    <img src="bday2.jpg">
+  </div>
+</div><script>
+function checkPass() {
+  const input = document.getElementById("pass").value;
+  const correct = "30/5/2006";
+
+  if(input === correct) {
+    document.getElementById("passwordScreen").style.display = "none";
+    document.getElementById("startScreen").style.display = "flex";
+  } else {
+    alert("Wrong password ❤️");
+  }
+}
+
+function startSite() {
+  document.getElementById("startScreen").style.display = "none";
+  document.getElementById("mainContent").style.display = "block";
+}
+
+function playMusic() {
+  document.getElementById("music").play();
+}
+function pauseMusic() {
+  document.getElementById("music").pause();
+}
+
+function checkBirthday() {
+  const inputDate = document.getElementById("bday").value;
+  const correctDate = "2003-08-15";
+
+  if(inputDate === correctDate) {
+    document.getElementById("msg").style.display = "block";
+    typeEffect();
+  } else {
+    alert("Wrong date 😜");
+  }
+}
+
+// Typing effect
+const text = "Happy Birthday My Love ❤️ You are my everything. From your childhood to now, I love every version of you 💖";
+let i = 0;
+
+function typeEffect() {
+  if(i < text.length) {
+    document.getElementById("typingText").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeEffect, 40);
+  }
+}
+</script></body>
+</html>
